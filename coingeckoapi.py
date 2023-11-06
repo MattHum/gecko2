@@ -6,10 +6,10 @@ import csv
 #build api request
 
 #from FAQ/coingecko
-#response = requests.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin&x_cg_demo_api_key=CG-eCwPJpJNwGFnW14zSkWbA2FJ")
-#response = requests.get("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur&include_market_cap=false&include_24hr_vol=false&include_24hr_change=false&include_last_updated_at=false&precision=false&x_cg_demo_api_key=CG-eCwPJpJNwGFnW14zSkWbA2FJ")
-#response = requests.get("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=eur&include_market_cap=false&include_24hr_vol=false&include_24hr_change=false&include_last_updated_at=false&precision=false&x_cg_demo_api_key=CG-eCwPJpJNwGFnW14zSkWbA2FJ")
-#response = requests.get("https://api.coingecko.com/api/v3/simple/price?ids=(payload)&vs_currencies=eur&include_market_cap=false&include_24hr_vol=false&include_24hr_change=false&include_last_updated_at=false&precision=false&x_cg_demo_api_key=CG-eCwPJpJNwGFnW14zSkWbA2FJ")
+#response = requests.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin&x_cg_demo_api_key=API")
+#response = requests.get("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur&include_market_cap=false&include_24hr_vol=false&include_24hr_change=false&include_last_updated_at=false&precision=false&x_cg_demo_api_key=API")
+#response = requests.get("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=eur&include_market_cap=false&include_24hr_vol=false&include_24hr_change=false&include_last_updated_at=false&precision=false&x_cg_demo_api_key=API")
+#response = requests.get("https://api.coingecko.com/api/v3/simple/price?ids=(payload)&vs_currencies=eur&include_market_cap=false&include_24hr_vol=false&include_24hr_change=false&include_last_updated_at=false&precision=false&x_cg_demo_api_key=API")
 
 url = "https://api.coingecko.com/api/v3/simple/price?ids="
 from creds import apikey
