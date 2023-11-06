@@ -3,29 +3,32 @@ import requests
 import json
 import csv
 
-#build api request
-
 #from FAQ/coingecko
-#response = requests.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin&x_cg_demo_api_key=CG-eCwPJpJNwGFnW14zSkWbA2FJ")
-#response = requests.get("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur&include_market_cap=false&include_24hr_vol=false&include_24hr_change=false&include_last_updated_at=false&precision=false&x_cg_demo_api_key=CG-eCwPJpJNwGFnW14zSkWbA2FJ")
-#response = requests.get("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=eur&include_market_cap=false&include_24hr_vol=false&include_24hr_change=false&include_last_updated_at=false&precision=false&x_cg_demo_api_key=CG-eCwPJpJNwGFnW14zSkWbA2FJ")
-#response = requests.get("https://api.coingecko.com/api/v3/simple/price?ids=(payload)&vs_currencies=eur&include_market_cap=false&include_24hr_vol=false&include_24hr_change=false&include_last_updated_at=false&precision=false&x_cg_demo_api_key=CG-eCwPJpJNwGFnW14zSkWbA2FJ")
+#response = requests.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin&x_cg_demo_api_key=APIAPI")
+#response = requests.get("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur&include_market_cap=false&include_24hr_vol=false&include_24hr_change=false&include_last_updated_at=false&precision=false&x_cg_demo_api_key=APIAPI")
+#response = requests.get("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=eur&include_market_cap=false&include_24hr_vol=false&include_24hr_change=false&include_last_updated_at=false&precision=false&x_cg_demo_api_key=APIAPI")
+
+#build api request
+from creds import apikey
+ak = apikey #Import key
 
 url = "https://api.coingecko.com/api/v3/simple/price?ids="
-from creds import apikey
-ak = apikey
-dict_http = {'&vs_currencies=':'eur', '&include_market_cap=':'false', '&include_24hr_vol=':'false', '&include_24hr_change=':'false', '&include_last_updated_at=':'false', '&precision=':'false', '&x_cg_demo_api_key=':ak}
-print(dict_http)
+#list of requested coins #polygon => matic-network
 my_list = ['bitcoin', 'bitcoin-cash', 'zcash', 'ethereum', 'litecoin', 'monero', 'dash', 'cardano', 'ripple', 'neo', 'eos', 'stellar', 'crypterium', 'polkadot', 'solana', 'dydx', 'matic-network', 'algorand', 'cosmos']
-#polygon => matic-network
 separator =','
 payload = separator.join(my_list)
-newstring = url + payload + "&vs_currencies=" + "eur" + "&include_market_cap=" + "false" + "&include_24hr_vol=" + "false" + "&include_24hr_change=" + "false" + "&include_last_updated_at=" + "false" + "&precision=" + "false" + "&x_cg_demo_api_key=" + ak
-#response = requests.get(newstring) #call api
-#API_data = response.json() #save json replay in dict
-#print(response.status_code) # check if connection went ok = 200
+newurl = url + payload 
+#lt. faq der cg webseite muss der teil der coins mit komma getrennt sein, das passt nicht
+#zur get request logic mit dem params -> daher string zusammenbauen
 
-#save data from nested dict to regular dict
+dict_http = {'vs_currencies':'eur', 'include_market_cap':'false', 'include_24hr_vol':'false', 'include_24hr_change':'false', 'include_last_updated_at':'false', 'precision':'false', 'x_cg_demo_api_key':ak}
+#dict for parameters
+
+response = requests.get(newurl, params=dict_http) #call api
+API_data = response.json() #save json replay in dict
+print(response.status_code) # check if connection went ok = 200
+
+#save data from nested dict to regular dictionary
 API_data_cleen = {}
 for i, j in API_data.items():
   API_data_cleen[i] = API_data[i]['eur']
